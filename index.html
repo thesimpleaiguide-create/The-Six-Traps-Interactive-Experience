@@ -9,13 +9,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Special+Elite&display=swap" rel="stylesheet" />
   <style>
-    body {
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      overflow-x: hidden;
+      overflow: hidden;
     }
     .tab-font {
       font-family: 'Special Elite', monospace;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
     }
     .perspective-1000 {
       perspective: 1000px;
@@ -32,135 +35,109 @@
     }
   </style>
 </head>
-<body class="bg-slate-100 text-slate-800 antialiased p-3 sm:p-5 flex flex-col items-center justify-center min-h-screen select-none">
+<body class="w-full select-none">
 
-  <!-- Header -->
-  <header class="text-center max-w-xl mb-3">
-    <div class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-[11px] font-bold uppercase tracking-wider mb-1 border border-amber-300">
-      <span>⚠️</span> Phase 4 · Active Experimentation
+  <div class="w-full max-w-4xl mx-auto px-2 pt-1 pb-2">
+    
+    <div class="relative w-full rounded-lg overflow-hidden shadow-lg border border-slate-300 bg-slate-900">
+      <img 
+        id="cabinet-img"
+        src="Cabinet_1.jpeg" 
+        alt="Medical Filing Cabinet" 
+        class="w-full h-auto block object-cover"
+      />
+
+      <div class="absolute inset-0 w-full h-full pointer-events-none">
+
+        <button onclick="openTrap(0)" 
+          class="pointer-events-auto absolute left-[21.5%] top-[54.5%] w-[16.5%] h-[9.5%] bg-amber-50/95 hover:bg-amber-100 border border-amber-300/90 rounded-sm shadow-sm flex items-center justify-center transition-all hover:scale-105 group px-1">
+          <span class="tab-font text-[9px] sm:text-[11px] md:text-xs font-bold text-slate-800 text-center uppercase leading-tight group-hover:text-blue-900">1. Partnership</span>
+        </button>
+
+        <button onclick="openTrap(1)" 
+          class="pointer-events-auto absolute left-[42.2%] top-[49.8%] w-[15.8%] h-[8.8%] bg-amber-50/95 hover:bg-amber-100 border border-amber-300/90 rounded-sm shadow-sm flex items-center justify-center transition-all hover:scale-105 group px-1">
+          <span class="tab-font text-[9px] sm:text-[11px] md:text-xs font-bold text-slate-800 text-center uppercase leading-tight group-hover:text-blue-900">2. Q & A</span>
+        </button>
+
+        <button onclick="openTrap(2)" 
+          class="pointer-events-auto absolute left-[59.5%] top-[47.2%] w-[15.8%] h-[8.8%] bg-amber-50/95 hover:bg-amber-100 border border-amber-300/90 rounded-sm shadow-sm flex items-center justify-center transition-all hover:scale-105 group px-1">
+          <span class="tab-font text-[9px] sm:text-[11px] md:text-xs font-bold text-slate-800 text-center uppercase leading-tight group-hover:text-blue-900">3. Agenda</span>
+        </button>
+
+        <button onclick="openTrap(3)" 
+          class="pointer-events-auto absolute left-[26.4%] top-[36.6%] w-[14%] h-[8%] bg-amber-50/95 hover:bg-amber-100 border border-amber-300/90 rounded-sm shadow-sm flex items-center justify-center transition-all hover:scale-105 group px-1">
+          <span class="tab-font text-[8px] sm:text-[10px] md:text-[11px] font-bold text-slate-800 text-center uppercase leading-tight group-hover:text-blue-900">4. Experience</span>
+        </button>
+
+        <button onclick="openTrap(4)" 
+          class="pointer-events-auto absolute left-[43.3%] top-[39.5%] w-[14%] h-[8%] bg-amber-50/95 hover:bg-amber-100 border border-amber-300/90 rounded-sm shadow-sm flex items-center justify-center transition-all hover:scale-105 group px-1">
+          <span class="tab-font text-[8px] sm:text-[10px] md:text-[11px] font-bold text-slate-800 text-center uppercase leading-tight group-hover:text-blue-900">5. No-Fault</span>
+        </button>
+
+        <button onclick="openTrap(5)" 
+          class="pointer-events-auto absolute left-[59%] top-[33.8%] w-[13.5%] h-[8%] bg-amber-50/95 hover:bg-amber-100 border border-amber-300/90 rounded-sm shadow-sm flex items-center justify-center transition-all hover:scale-105 group px-1">
+          <span class="tab-font text-[8px] sm:text-[10px] md:text-[11px] font-bold text-slate-800 text-center uppercase leading-tight group-hover:text-blue-900">6. Transition</span>
+        </button>
+      </div>
     </div>
-    <h1 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">The Six Traps Archive</h1>
-    <p class="text-xs text-slate-600">Select any labeled tab in the cabinet to inspect the clinical trap and reveal Dr. Lindsay's antidote.</p>
-  </header>
 
-  <!-- Interactive Cabinet Container -->
-  <div class="relative w-full max-w-3xl rounded-xl overflow-hidden shadow-2xl border-4 border-slate-700 bg-slate-900">
-    <!-- Base Cabinet Image -->
-    <img 
-      id="cabinet-img"
-      src="Cabinet_1.jpeg" 
-      alt="Medical Filing Cabinet" 
-      class="w-full h-auto block object-cover"
-    />
-
-    <!-- Overlaid Interactive Tabs -->
-    <div class="absolute inset-0 w-full h-full pointer-events-none">
-
-      <!-- ROW 1 (FRONT TABS) -->
-
-      <!-- 1. PARTNERSHIP (Front Left) -->
-      <button onclick="openTrap(0)" 
-        class="pointer-events-auto absolute left-[21.5%] top-[54.5%] w-[16.5%] h-[9.5%] bg-amber-50/90 hover:bg-amber-100 border border-amber-300/80 rounded-sm shadow-sm flex items-center justify-center transition-all hover:scale-105 group px-1">
-        <span class="tab-font text-[9px] sm:text-[11px] font-bold text-slate-800 text-center uppercase leading-tight group-hover:text-blue-900">1. Partnership</span>
-      </button>
-
-      <!-- 2. Q & A (Front Center) -->
-      <button onclick="openTrap(1)" 
-        class="pointer-events-auto absolute left-[42.2%] top-[49.8%] w-[15.8%] h-[8.8%] bg-amber-50/90 hover:bg-amber-100 border border-amber-300/80 rounded-sm shadow-sm flex items-center justify-center transition-all hover:scale-105 group px-1">
-        <span class="tab-font text-[9px] sm:text-[11px] font-bold text-slate-800 text-center uppercase leading-tight group-hover:text-blue-900">2. Q & A</span>
-      </button>
-
-      <!-- 3. AGENDA (Front Right) -->
-      <button onclick="openTrap(2)" 
-        class="pointer-events-auto absolute left-[59.5%] top-[47.2%] w-[15.8%] h-[8.8%] bg-amber-50/90 hover:bg-amber-100 border border-amber-300/80 rounded-sm shadow-sm flex items-center justify-center transition-all hover:scale-105 group px-1">
-        <span class="tab-font text-[9px] sm:text-[11px] font-bold text-slate-800 text-center uppercase leading-tight group-hover:text-blue-900">3. Agenda</span>
-      </button>
-
-      <!-- ROW 2 (MIDDLE TABS) -->
-
-      <!-- 4. EXPERIENCE (Mid Left) -->
-      <button onclick="openTrap(3)" 
-        class="pointer-events-auto absolute left-[26.4%] top-[36.6%] w-[14%] h-[8%] bg-amber-50/90 hover:bg-amber-100 border border-amber-300/80 rounded-sm shadow-sm flex items-center justify-center transition-all hover:scale-105 group px-1">
-        <span class="tab-font text-[8.5px] sm:text-[10px] font-bold text-slate-800 text-center uppercase leading-tight group-hover:text-blue-900">4. Experience</span>
-      </button>
-
-      <!-- 5. NO-FAULT (Mid Center) -->
-      <button onclick="openTrap(4)" 
-        class="pointer-events-auto absolute left-[43.3%] top-[39.5%] w-[14%] h-[8%] bg-amber-50/90 hover:bg-amber-100 border border-amber-300/80 rounded-sm shadow-sm flex items-center justify-center transition-all hover:scale-105 group px-1">
-        <span class="tab-font text-[8.5px] sm:text-[10px] font-bold text-slate-800 text-center uppercase leading-tight group-hover:text-blue-900">5. No-Fault</span>
-      </button>
-
-      <!-- 6. TRANSITION (Mid Right) -->
-      <button onclick="openTrap(5)" 
-        class="pointer-events-auto absolute left-[59%] top-[33.8%] w-[13.5%] h-[8%] bg-amber-50/90 hover:bg-amber-100 border border-amber-300/80 rounded-sm shadow-sm flex items-center justify-center transition-all hover:scale-105 group px-1">
-        <span class="tab-font text-[8px] sm:text-[10px] font-bold text-slate-800 text-center uppercase leading-tight group-hover:text-blue-900">6. Transition</span>
-      </button>
-
+    <div class="mt-2 flex flex-wrap justify-center gap-1">
+      <button onclick="openTrap(0)" class="px-2 py-0.5 bg-white hover:bg-slate-100 border border-slate-300 rounded text-[11px] font-semibold text-slate-700 shadow-xs">1. Partnership</button>
+      <button onclick="openTrap(1)" class="px-2 py-0.5 bg-white hover:bg-slate-100 border border-slate-300 rounded text-[11px] font-semibold text-slate-700 shadow-xs">2. Q & A</button>
+      <button onclick="openTrap(2)" class="px-2 py-0.5 bg-white hover:bg-slate-100 border border-slate-300 rounded text-[11px] font-semibold text-slate-700 shadow-xs">3. Agenda</button>
+      <button onclick="openTrap(3)" class="px-2 py-0.5 bg-white hover:bg-slate-100 border border-slate-300 rounded text-[11px] font-semibold text-slate-700 shadow-xs">4. Experience</button>
+      <button onclick="openTrap(4)" class="px-2 py-0.5 bg-white hover:bg-slate-100 border border-slate-300 rounded text-[11px] font-semibold text-slate-700 shadow-xs">5. No-Fault</button>
+      <button onclick="openTrap(5)" class="px-2 py-0.5 bg-white hover:bg-slate-100 border border-slate-300 rounded text-[11px] font-semibold text-slate-700 shadow-xs">6. Transition</button>
     </div>
   </div>
 
-  <!-- Mobile Quick Action Buttons -->
-  <div class="mt-3 flex flex-wrap justify-center gap-1.5 max-w-2xl">
-    <button onclick="openTrap(0)" class="px-2.5 py-1 bg-white border border-slate-300 hover:border-slate-500 rounded text-xs font-bold text-slate-700 shadow-sm">1. Partnership</button>
-    <button onclick="openTrap(1)" class="px-2.5 py-1 bg-white border border-slate-300 hover:border-slate-500 rounded text-xs font-bold text-slate-700 shadow-sm">2. Q & A</button>
-    <button onclick="openTrap(2)" class="px-2.5 py-1 bg-white border border-slate-300 hover:border-slate-500 rounded text-xs font-bold text-slate-700 shadow-sm">3. Agenda</button>
-    <button onclick="openTrap(3)" class="px-2.5 py-1 bg-white border border-slate-300 hover:border-slate-500 rounded text-xs font-bold text-slate-700 shadow-sm">4. Experience</button>
-    <button onclick="openTrap(4)" class="px-2.5 py-1 bg-white border border-slate-300 hover:border-slate-500 rounded text-xs font-bold text-slate-700 shadow-sm">5. No-Fault</button>
-    <button onclick="openTrap(5)" class="px-2.5 py-1 bg-white border border-slate-300 hover:border-slate-500 rounded text-xs font-bold text-slate-700 shadow-sm">6. Transition</button>
-  </div>
-
-  <!-- MODAL / POP-OUT CARD OVERLAY -->
-  <div id="card-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="relative w-full max-w-md">
-      <!-- Close Button -->
-      <button onclick="closeTrap()" class="absolute -top-10 right-0 text-white hover:text-amber-400 font-bold text-sm flex items-center gap-1 bg-slate-800/80 px-3 py-1 rounded-full border border-slate-600">
+  <div id="card-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3">
+    <div class="relative w-full max-w-sm sm:max-w-md">
+      <button onclick="closeTrap()" class="absolute -top-8 right-0 text-white hover:text-amber-400 text-xs font-bold flex items-center gap-1 bg-slate-800 px-2.5 py-0.5 rounded-full border border-slate-600">
         <span>Close</span> &times;
       </button>
 
-      <!-- 3D Flip Card Shell -->
-      <div class="perspective-1000 h-[380px] w-full cursor-pointer" onclick="flipActiveCard()">
-        <div id="modal-card-inner" class="relative w-full h-full duration-500 transform-style-3d transition-transform rounded-2xl shadow-2xl border border-slate-300 bg-white">
+      <div class="perspective-1000 h-[340px] w-full cursor-pointer" onclick="flipActiveCard()">
+        <div id="modal-card-inner" class="relative w-full h-full duration-500 transform-style-3d transition-transform rounded-xl shadow-2xl border border-slate-300 bg-white">
           
-          <!-- FRONT: THE CLINICAL TRAP -->
-          <div class="absolute inset-0 w-full h-full p-6 flex flex-col justify-between backface-hidden bg-white rounded-2xl">
+          <div class="absolute inset-0 w-full h-full p-4 sm:p-5 flex flex-col justify-between backface-hidden bg-white rounded-xl">
             <div>
-              <div class="flex items-center justify-between mb-2">
-                <span id="trap-tab-label" class="tab-font text-xs text-slate-800 font-bold bg-amber-100 px-3 py-0.5 rounded border border-amber-300"></span>
-                <span class="text-[10px] font-extrabold uppercase tracking-wider text-red-600 bg-red-100 px-2.5 py-0.5 rounded">The Trap</span>
+              <div class="flex items-center justify-between mb-1.5">
+                <span id="trap-tab-label" class="tab-font text-[11px] text-slate-800 font-bold bg-amber-100 px-2 py-0.5 rounded border border-amber-300"></span>
+                <span class="text-[9px] font-extrabold uppercase tracking-wider text-red-600 bg-red-100 px-2 py-0.5 rounded">The Trap</span>
               </div>
-              <h2 id="trap-title" class="text-xl font-black text-slate-900 leading-tight"></h2>
-              <p id="trap-subtitle" class="text-xs text-slate-500 mb-3"></p>
+              <h2 id="trap-title" class="text-base sm:text-lg font-black text-slate-900 leading-tight"></h2>
+              <p id="trap-subtitle" class="text-[11px] text-slate-500 mb-2"></p>
               
-              <div class="bg-red-50 border-l-4 border-red-500 p-3 rounded-r-lg mb-3">
-                <p class="text-[10px] uppercase font-bold text-red-700 tracking-wider mb-1">What it sounds like in clinic</p>
-                <p id="trap-sound" class="text-xs italic text-slate-800 font-medium leading-relaxed"></p>
+              <div class="bg-red-50 border-l-3 border-red-500 p-2.5 rounded-r-md mb-2">
+                <p class="text-[9px] uppercase font-bold text-red-700 tracking-wider mb-0.5">What it sounds like</p>
+                <p id="trap-sound" class="text-xs italic text-slate-800 font-medium leading-snug"></p>
               </div>
-              <p class="text-xs text-slate-600 leading-relaxed"><strong class="text-slate-900">The Fallout:</strong> <span id="trap-fallout"></span></p>
+              <p class="text-[11px] text-slate-600 leading-snug"><strong class="text-slate-900">The Fallout:</strong> <span id="trap-fallout"></span></p>
             </div>
             
-            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-blue-700 font-bold text-xs">
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-blue-700 font-bold text-xs">
               <span>Click card to inspect Antidote</span>
               <span>&rarr;</span>
             </div>
           </div>
 
-          <!-- BACK: THE MI ANTIDOTE -->
-          <div class="absolute inset-0 w-full h-full p-6 flex flex-col justify-between backface-hidden rotate-y-180 bg-slate-900 text-white rounded-2xl">
+          <div class="absolute inset-0 w-full h-full p-4 sm:p-5 flex flex-col justify-between backface-hidden rotate-y-180 bg-slate-900 text-white rounded-xl">
             <div>
-              <div class="flex items-center justify-between mb-2">
-                <span id="antidote-tab-label" class="tab-font text-xs text-emerald-300 font-bold bg-emerald-950 px-3 py-0.5 rounded border border-emerald-600"></span>
-                <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-400 bg-emerald-950/80 px-2.5 py-0.5 rounded border border-emerald-500/40">Dr. Lindsay's Antidote</span>
+              <div class="flex items-center justify-between mb-1.5">
+                <span id="antidote-tab-label" class="tab-font text-[11px] text-emerald-300 font-bold bg-emerald-950 px-2 py-0.5 rounded border border-emerald-600"></span>
+                <span class="text-[9px] font-extrabold uppercase tracking-wider text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/40">Antidote</span>
               </div>
-              <h2 id="antidote-title" class="text-xl font-black text-emerald-400 leading-tight"></h2>
-              <p id="antidote-action" class="text-xs text-slate-300 mt-1 mb-3 leading-relaxed"></p>
+              <h2 id="antidote-title" class="text-base sm:text-lg font-black text-emerald-400 leading-tight"></h2>
+              <p id="antidote-action" class="text-[11px] text-slate-300 mt-0.5 mb-2 leading-snug"></p>
               
-              <div class="bg-slate-800 border-l-4 border-emerald-400 p-3 rounded-r-lg">
-                <p class="text-[10px] uppercase font-bold text-emerald-400 tracking-wider mb-1">Try Saying This</p>
-                <p id="antidote-phrase" class="text-xs italic text-emerald-100 leading-relaxed font-medium"></p>
+              <div class="bg-slate-800 border-l-3 border-emerald-400 p-2.5 rounded-r-md">
+                <p class="text-[9px] uppercase font-bold text-emerald-400 tracking-wider mb-0.5">Try Saying This</p>
+                <p id="antidote-phrase" class="text-xs italic text-emerald-100 leading-snug font-medium"></p>
               </div>
             </div>
 
-            <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-slate-400 font-semibold text-xs">
+            <div class="pt-2 border-t border-slate-800 flex items-center justify-between text-slate-400 font-semibold text-xs">
               <span>Click card to see Trap</span>
               <span>&larr;</span>
             </div>
@@ -194,11 +171,11 @@
         antidotePhrase: "So managing the cravings during evening shifts has felt nearly impossible lately."
       },
       {
-        tab: "3. AGENDA MAPPING",
+        tab: "3. AGENDA",
         name: "Premature Focus",
-        subtitle: "Zooming in on the clinician's agenda",
+        subtitle: "Zooming in on clinician agenda",
         sound: "Your HbA1c is 68, so we need to tackle your sugar and diet today, before anything else.",
-        fallout: "If the patient came in distressed about bereavement or joint pain, you lose their engagement immediately.",
+        fallout: "If the patient came in distressed about bereavement or joint pain, you lose their engagement.",
         antidoteTitle: "Agenda Mapping",
         antidoteAction: "Lay out clinical topics alongside their priorities and agree where to start.",
         antidotePhrase: "We have test results to review, but what was the top priority you hoped to discuss today?"
@@ -218,7 +195,7 @@
         name: "The Blaming Trap",
         subtitle: "Searching for fault and causality",
         sound: "How did you let your weight creep up by another two stone since October?",
-        fallout: "Triggers intense shame or defensiveness. Patients retreat into sustain talk to protect dignity.",
+        fallout: "Triggers intense shame or defensiveness. Patients retreat into sustain talk.",
         antidoteTitle: "No-Blame Framing",
         antidoteAction: "Approach lapses with objective curiosity rather than judgment.",
         antidotePhrase: "Bodies fluctuate when life gets stressful. What changes happened for you since autumn?"
@@ -228,7 +205,7 @@
         name: "The Chat Trap",
         subtitle: "Comfortable, surface-level small talk",
         sound: "How are the grandkids? Lovely weather this week! Have you been keeping busy in the garden?",
-        fallout: "Pleasant and warm, but consumes 8 minutes of a 10-minute clinic without addressing change.",
+        fallout: "Pleasant and warm, but consumes 8 minutes of a 10-minute clinic without touching change.",
         antidoteTitle: "Purposeful Redirection",
         antidoteAction: "Acknowledge the rapport briefly, then anchor straight into change talk.",
         antidotePhrase: "It is wonderful hearing about the grandkids. Let's make sure we talk about keeping your energy up with them."
